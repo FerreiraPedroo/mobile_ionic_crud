@@ -1,0 +1,87 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title size="large">Contatos</ion-title>
+    <div slot="end" class="list-header-buttons">
+      <ion-button size="small">+
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="edit"></ion-icon>
+      </ion-button>
+      <ion-button size="small">./
+        <ion-icon slot="icon-only" name="edit" id="open-modal" expand="block"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header> -->
+<!-- <ion-content color="light">
+  <ion-list [inset]="true">
+
+    <ion-item *ngFor="let contact of lista" [button]="true">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>{{contact.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+
+
+<ion-content class="ion-padding">
+  <ion-button id="open-modal" expand="block">Open Card Modal</ion-button>
+
+  <ion-modal #modal trigger="open-modal" [presentingElement]="modalPresentingElement">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-button slot="start" (click)="modal.dismiss()" color="primary">Salvar</ion-button>
+          <ion-title id="contac-new-title">Novo contato</ion-title>
+          <ion-button slot="end" (click)="modal.dismiss()" color="danger">Fechar</ion-button>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div id="contact-new-photo">
+          <svg xmlns="http://www.w3.org/2000/svg" class="contact-new-photo" width="150px" height="150px" viewBox="0 0 150 150">
+            <path width="150" height="150" x="0" y="0"
+              d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z" />
+            <path
+              d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z" />
+          </svg>
+        </div>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-input placeholder="Nome">
+              <ion-icon slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input placeholder="Telefone">
+              <ion-icon slot="start" name="call-outline" aria-hidden="true"></ion-icon>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input placeholder="Email">
+              <ion-icon slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input placeholder="Endereço">
+              <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input placeholder="Data de aniversário">
+              <ion-icon slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
+            </ion-input>
+          </ion-item>
+
+        </ion-list>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

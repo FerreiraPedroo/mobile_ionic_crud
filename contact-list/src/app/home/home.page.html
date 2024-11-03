@@ -30,7 +30,13 @@
           <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-
+      <div>
+        <ion-item>
+          <ion-icon size="large" name="person"></ion-icon>
+          <ion-input type="email" [(ngModel)]="userValue" required label="Email" labelPlacement="floating"
+            placeholder="Insira seu Email"></ion-input>
+        </ion-item>Valor do passowrd:{{ userValue }}
+      </div>
       <ion-item-options side="end">
         <ion-item-option color="danger">
           <ion-icon slot="icon-only" name="trash"></ion-icon>

@@ -5,36 +5,33 @@
 </ion-header>
 
 <ion-content class="container">
-  
   <div class="container">
-
     <div class="login">
 
-      <form>
+      <h2>Login</h2>
+      <div>
+        <ion-item>
+          <ion-icon size="large" name="person"></ion-icon>
+          <ion-input [(ngModel)]="user" required label="Email" labelPlacement="floating"
+            placeholder="Insira seu Email"></ion-input>
+        </ion-item>
+      </div>
 
-        <h2>Realize seu Login!</h2>
-        <div>
-          <ion-item>
-            <ion-icon size="large" name="person"></ion-icon> 
-            <ion-input {(ngModel)}="user.email" required label="Email" labelPlacement="floating" placeholder="Insira seu Email"></ion-input>
-          </ion-item>
-        </div>
-        
-    
-        <div>
-          <ion-item>
-            <ion-icon size="large" name="lock-closed"></ion-icon> 
-            <ion-input type="password" {(ngModel)}="user.password" required label="Senha" labelPlacement="floating" placeholder="Insira sua senha"></ion-input>
-          </ion-item>
-        </div>
-        
-        <ion-button shape="round" class="ion-margin-top" (click)="login(user)">Entrar<ion-icon slot="end" name="log-in"></ion-icon></ion-button>
-        <ion-button shape="round" class="ion-margin-top">Registre-se<ion-icon slot="end" name="person-add"></ion-icon></ion-button>
-        
-      </form>
+
+      <div>
+        <ion-item>
+          <ion-icon size="large" name="lock-closed"></ion-icon>
+          <ion-input [(ngModel)]="password" type="password" required label="Senha" labelPlacement="floating"
+            placeholder="Insira sua senha"></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button href="/home" shape="round" class="ion-margin-top" (click)="login(user)">Entrar<ion-icon slot="end"
+          name="log-in"></ion-icon></ion-button>
+      <ion-button href="/registro" shape="round" class="ion-margin-top">Registre-se<ion-icon slot="end"
+          name="person-add"></ion-icon></ion-button>
+
 
     </div>
-
   </div>
-  
 </ion-content>

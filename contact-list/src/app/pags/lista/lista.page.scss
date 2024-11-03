@@ -1,0 +1,21 @@
+.list-header-buttons{
+  display: flex;
+  gap: 12px;
+  padding: 0 12px 0 8px;
+}
+
+#contac-new-title{
+  width: 100%;
+  text-align: center;
+}
+#contact-new-photo{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#photo-icon {
+  width: 100px;
+  height: 100px;
+}

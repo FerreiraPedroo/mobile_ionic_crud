@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: 'login.page.html',
+  styleUrls: ['login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+  user: string = "";
+  password: string = "";
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() {
+  login(user: string) {
+    console.log(this.password)
+    console.log(this.user)
+
   }
 
 }

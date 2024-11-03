@@ -1,26 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from "/avformadoraIII/mobile_ionic_crud/contact-list/src/app/models/user.model";
+import { Component } from '@angular/core';
+import { User } from "../../../models/user.model";
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  templateUrl: 'registro.page.html',
+  styleUrls: ['registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
-  user = {} as User;
-
+export class RegistroPage {
+  user: string = "";
+  password: string = "";
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private afAuth: AngularFireAuth,
+    // private afAuth: AngularFireAuth,
     private navCtrl: NavController
   ) { }
 
-  ngOnInit() {}
-
-  async registro(user: User){
+  async registro(user: string){
     if (this.formValidation()) {
       let loader = await this.loadingCtrl.create({
         message: "Aguarde..."
@@ -28,11 +26,11 @@ export class RegistroPage implements OnInit {
       await loader.present();
 
       try {
-        await this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then(data =>{
-          console.log(data);
+        // await this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then(data =>{
+        //   console.log(data);
 
-          this.navCtrl.navigateRoot("home")
-        })
+        //   this.navCtrl.navigateRoot("home")
+        // })
         
       } catch (error:any) {
         error.message = "Error para se registrar";
@@ -47,11 +45,11 @@ export class RegistroPage implements OnInit {
   }
 
   formValidation(){
-    if (!this.user.email) {
+    if (!this.user) {
       this.showToast("Insira um email");
       return false;
     }
-    if (!this.user.password) {
+    if (!this.password) {
       this.showToast("Insira uma senha");
       return false;
     }
