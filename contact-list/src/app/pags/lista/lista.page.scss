@@ -10,12 +10,34 @@
 }
 #contact-new-photo{
   width: 100%;
-  height: 150px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+#contact-new-photo-svg{
+  width: 100px;
+  height: 100px;
+  background-image: url('person-circle-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.contact-list-photo-svg{
+  // width: 100px;
+  // height: 100px;
+  background-image: url('person-circle-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 #photo-icon {
   width: 100px;
   height: 100px;
+}
+#contac-new-toolbar {
+  padding: 0 12px
+}
+
+.selected-item{
+  border: 1px solid red;
+  z-index: 999;
 }

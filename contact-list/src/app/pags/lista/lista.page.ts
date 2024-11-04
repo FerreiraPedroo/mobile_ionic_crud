@@ -5,9 +5,12 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Storage } from '@ionic/storage-angular';
 
 interface Contact {
-  ID: number
-  name: string
-  email: string
+  ID?: number
+  name?: string
+  phone?: string
+  email?: string
+  address?: string
+  birthDate?: string
 }
 
 @Component({
@@ -16,13 +19,14 @@ interface Contact {
   styleUrls: ['lista.page.scss'],
 })
 export class ListaPage {
-  lista: Contact[] = [];
   private _storage: Storage | null = null;
-  modalPresentingElement: any = null;
+  lista: Contact[] = [];
+  saveContact: Contact = {}
+
+  selectedItem: number = 0
 
   constructor(private storage: Storage) {
     this.init()
-    this.modalPresentingElement = document.querySelector('.ion-page');
   }
 
   async init() {
@@ -34,42 +38,52 @@ export class ListaPage {
     this.lista = startListaJSON;
   }
 
-  async set(name: string, phone: number, email: string) {
-    const getStorage = await this._storage?.get("lista");
+  async contactSave(modal: any) {
+
+    const getStorage = await this._storage?.get("lista") ?? "[]";
     let tempLista = [];
 
-    if (!getStorage) {
-      tempLista = [];
-      this.lista = [];
-      return;
-    } else {
-      tempLista = JSON.parse(getStorage);
+    tempLista = JSON.parse(getStorage);
 
-      const lastID = tempLista[tempLista.length - 1].ID ?? 1;
+    const lastID = tempLista.length ? tempLista[tempLista.length - 1].ID + 1 : 1;
 
-      const newContact = {
-        ID: lastID,
-        name,
-        phone,
-        email
-      }
-
-      tempLista.push(newContact);
-
-      const listaStr = JSON.stringify(tempLista);
-
-      await this._storage?.set("lista", listaStr);
-
-      return;
+    const newContact = {
+      ID: lastID,
+      ...this.saveContact
     }
+
+    tempLista.push(newContact);
+
+    const listaStr = JSON.stringify(tempLista);
+
+    await this._storage?.set("lista", listaStr);
+
+    this.saveContact = {};
+
+    this.init()
+
+    modal.dismiss()
+
+    return;
+
   }
 
-  selecionarItem(itemID: number) {
+
+  selectItemClass(contact: any) {
+    return contact.ID == this.selectedItem
+  }
+  selectItem(ID: any) {
+    // const selected = document.getElementById(ID)
+    // selected!.setAttribute("style", "background-color: blue !important;")
+
+    // if (this.selectedItem) {
+    //   const beforeSelected = document.getElementById(String(this.selectedItem));
+    //   beforeSelected!.removeAttribute("style")
+    // }
+
+    this.selectedItem = ID;
   }
 
-  async canDismiss(data?: any, role?: string) {
-    return role !== 'gesture';
-  }
 
 
 
@@ -84,8 +98,5 @@ export class ListaPage {
 
 
 
-
-
-  
 
 }
