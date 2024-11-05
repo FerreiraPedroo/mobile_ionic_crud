@@ -1,0 +1,26 @@
+#contac-new-title {
+  width: 100%;
+  text-align: center;
+}
+#contact-new-photo {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#contact-new-photo-svg {
+  width: 100px;
+  height: 100px;
+  background-image: url("person-circle-outline.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#contact-new-buttons-box {
+  display: flex;
+  justify-content: space-around;
+}
+.contact-new-button {
+  font-size: 1.1rem;
+}

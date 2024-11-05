@@ -85,6 +85,12 @@ export class ListaPage {
   }
 
 
+  onWillDismiss(event: Event) {
+    const ev = event as any;
+    if (ev.detail.role === 'confirm') {
+    }
+  }
+
 
 
 

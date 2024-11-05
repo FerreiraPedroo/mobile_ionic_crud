@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="contac-new-title">Novo contato</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="contact-new-photo">
+    <div id="contact-new-photo-svg"></div>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Nome" [(ngModel)]="saveContact.name">
+        <ion-icon slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Telefone" [(ngModel)]="saveContact.phone">
+        <ion-icon slot="start" name="call-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Email" [(ngModel)]="saveContact.email">
+        <ion-icon slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Endereço" [(ngModel)]="saveContact.address">
+        <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Data de aniversário" [(ngModel)]="saveContact.birthDate">
+        <ion-icon slot="start" name="calendar-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-tabs>
+    <ion-tab-bar id="contact-new-buttons-box">
+      <ion-tab-button class="contact-new-button">
+        Cancelar
+      </ion-tab-button>
+      <ion-tab-button class="contact-new-button" (click)="contactSave()">
+        Salver
+      </ion-tab-button>
+    </ion-tab-bar>
+
+  </ion-tabs>
+</ion-content>
