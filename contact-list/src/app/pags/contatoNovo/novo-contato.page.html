@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <div slot="start" id="contact-new-buttons">
+      <ion-button size="medium" color="light" href="home">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-title id="contac-new-title">Novo contato</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="contact-new-content">
+
+    <div id="contact-new-photo">
+      <div id="contact-new-photo-svg"></div>
+    </div>
+
+    <ion-list id="contact-new-list-box">
+      <ion-item>
+        <ion-input placeholder="Nome" [(ngModel)]="saveContact.name"
+          [ngClass]="{'ion-invalid':error.name,'ion-touched':error.name}" errorText="{{error.name}}">
+          <ion-icon slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Telefone" [(ngModel)]="saveContact.phone"
+          [ngClass]="{'ion-invalid':error.phone,'ion-touched':error.phone}" errorText="{{error.phone}}">
+          <ion-icon slot="start" name="call-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Email" [(ngModel)]="saveContact.email"
+          [ngClass]="{'ion-invalid':error.email,'ion-touched':error.email}" errorText="{{error.email}}">
+          <ion-icon slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Endereço" [(ngModel)]="saveContact.address">
+          <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div id="contact-new-toolbar-box">
+      <ion-button slot="start" color="dark" fill="clear" class="contact-new-button" href="home">
+        Cancelar
+      </ion-button>
+      <ion-button slot="end" color="dark" fill="clear" (click)="validateInput()" class="contact-new-button">
+        Salvar
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

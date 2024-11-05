@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <div slot="start" class="contact-buttons">
+      <ion-button size="medium" color="light" href="home">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-title id="contac-title">Contato</ion-title>
+    <div slot="end" class="contact-buttons">
+      <div [hidden]="!isReadonly">
+        <ion-button size="medium" color="light" (click)="changeEdit()">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="contact-content">
+
+    <div id="contact-photo">
+      <div id="contact-photo-svg"></div>
+    </div>
+
+    <ion-list id="contact-input-box">
+      <ion-item [lines]="isEdit">
+        <ion-input [readonly]="isReadonly" placeholder="Nome" [(ngModel)]="editContact.name"
+          [ngClass]="{'ion-invalid':error.name,'ion-touched':error.name}" errorText="{{error.name}}">
+          <ion-icon slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item [lines]="isEdit">
+        <ion-input [readonly]="isReadonly" placeholder="Telefone" [(ngModel)]="editContact.phone"
+          [ngClass]="{'ion-invalid':error.phone,'ion-touched':error.phone}" errorText="{{error.phone}}">
+          <ion-icon slot="start" name="call-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item [lines]="isEdit">
+        <ion-input [readonly]="isReadonly" placeholder="Email" [(ngModel)]="editContact.email"
+          [ngClass]="{'ion-invalid':error.email,'ion-touched':error.email}" errorText="{{error.email}}">
+          <ion-icon slot="start" name="mail-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item [lines]="isEdit">
+        <ion-input [readonly]="isReadonly" placeholder="Endereço" [(ngModel)]="editContact.address">
+          <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div id="contact-toolbar-box" *ngIf="!isEdit">
+      <ion-button slot="start" color="dark" fill="clear" (click)="changeEdit()" class="contact-button">
+        Cancelar
+      </ion-button>
+      <ion-button slot="end" color="dark" fill="clear" (click)="validateInput()" class="contact-button">
+        Salvar
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

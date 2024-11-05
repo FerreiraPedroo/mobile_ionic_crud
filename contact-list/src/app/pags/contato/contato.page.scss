@@ -1,0 +1,50 @@
+#contac-title {
+  width: 100%;
+  text-align: center;
+}
+#contact-photo {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#contact-photo-svg {
+  width: 100px;
+  height: 100px;
+  background-image: url("person-circle-outline.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#contact-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-list-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0 32px 0 20px;
+  gap: 12px;
+}
+
+#contact-toolbar-box {
+  display: flex;
+  flex-grow: 1;
+  align-items: end;
+}
+
+.contact-button {
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+#contact-input-box{
+  padding-right: 16px;
+}
+
+.contact-buttons{
+  width: 80px;
+  padding: 0 16px;
+}

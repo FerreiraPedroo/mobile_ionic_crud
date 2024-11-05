@@ -1,0 +1,48 @@
+#list-header-buttons {
+  padding: 12px 8px;
+}
+
+#lista-toolbar{
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  border-bottom: 1px solid gainsboro;
+  gap: 12px;
+}
+
+#lista-title {
+  font-size: 2rem;
+  flex-shrink: 0;
+  text-align: center;
+  padding-top: 60px
+}
+
+#lista-buttons {
+  display: flex;
+  justify-content: end;
+  padding: 0 32px 16px 32px;
+  gap: 32px;
+}
+
+#lista-empyt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#contact-new-photo-svg{
+  background-image: url('person-circle-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.contact-list-photo-svg{
+  background-image: url('person-circle-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#photo-icon {
+  width: 100px;
+  height: 100px;
+}

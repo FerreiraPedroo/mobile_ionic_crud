@@ -1,0 +1,48 @@
+#contac-new-title {
+  width: 100%;
+  text-align: center;
+  padding-right: 80px;
+}
+
+#contact-new-photo {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#contact-new-photo-svg {
+  width: 100px;
+  height: 100px;
+  background-image: url("person-circle-outline.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#contact-new-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-new-list-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 0 0;
+  gap: 12px;
+}
+
+#contact-new-toolbar-box {
+  display: flex;
+  flex-grow: 1;
+  align-items: end;
+}
+
+.contact-new-button {
+  width: 100%;
+  font-size: 1rem;
+}
+
+#contact-new-buttons{
+  padding-right: 16px;
+}
+

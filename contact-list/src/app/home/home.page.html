@@ -1,12 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Seja Bem Vindo a sua lista de Contatos!
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+
+  <ion-fab vertical="botton" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/add-post']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list lines="none">
+    <ion-item-sliding>
+
+      <ion-item class="no-padding">
+        <ion-label>
+          <h2>Nome do contato</h2>
+          <p>(21) 95252-2525</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="start">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <div>
+        <ion-item>
+          <ion-icon size="large" name="person"></ion-icon>
+          <ion-input type="email" [(ngModel)]="userValue" required label="Email" labelPlacement="floating"
+            placeholder="Insira seu Email"></ion-input>
+        </ion-item>Valor do passowrd:{{ userValue }}
+      </div>
+      <ion-item-options side="end">
+        <ion-item-option color="danger">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>

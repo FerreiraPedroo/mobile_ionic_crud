@@ -1,0 +1,23 @@
+<ion-toolbar id="list-header-buttons">
+  <div id="lista-toolbar">
+    <ion-title slot="start" id="lista-title" size="large">Contatos</ion-title>
+    <div slot="end" id="lista-buttons">
+      <ion-button size="medium" color="light" href="/contato-novo">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-toolbar>
+
+<ion-content>
+  <ion-list [inset]="true">
+    <ng-container *ngFor="let contact of lista">
+      <ion-item id="{{contact.ID}}" [button]="true" (click)="selectItem(contact.ID)">
+        <ion-avatar aria-hidden="true" slot="start">
+          <img alt="" class="contact-list-photo-svg" />
+        </ion-avatar>
+        <ion-label>{{contact.name}}</ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>
