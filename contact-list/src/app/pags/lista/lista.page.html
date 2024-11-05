@@ -12,8 +12,7 @@
 <ion-content>
   <ion-list [inset]="true">
     <ng-container *ngFor="let contact of lista">
-      <ion-item id="{{contact.ID}}" [button]="true" (click)="selectItem(contact.ID)"
-        [ngClass]="{'selected-item': selectItemClass(contact)}">
+      <ion-item id="{{contact.ID}}" [button]="true" (click)="selectItem(contact.ID)">
         <ion-avatar aria-hidden="true" slot="start">
           <img alt="" class="contact-list-photo-svg" />
         </ion-avatar>

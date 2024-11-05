@@ -15,6 +15,13 @@ const routes: Routes = [
       import('./pags/login/login.module').then((m) => m.LoginPageModule),
   },
   {
+    path: 'contact/:ID',
+    loadChildren: () =>
+      import('./pags/contato/contato.module').then(
+        (m) => m.ContatoPageModule
+      ),
+  },
+  {
     path: 'contato-novo',
     loadChildren: () =>
       import('./pags/contatoNovo/novo-contato.module').then(
