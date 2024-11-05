@@ -21,7 +21,9 @@ export class ListaPage {
   lista: Contact[] = [];
   saveContact: Contact = {};
 
-  constructor(private storage: Storage, private router: Router) {
+  constructor(private storage: Storage, private router: Router) {}
+
+  ionViewWillEnter() {
     this.init();
   }
 

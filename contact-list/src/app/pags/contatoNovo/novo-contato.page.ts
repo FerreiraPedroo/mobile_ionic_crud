@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../../models/user.model';
-import {
-  LoadingController,
-  NavController,
-  ToastController,
-} from '@ionic/angular';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
 interface Contact {
@@ -27,7 +21,7 @@ export class ContatoNovoPage {
   saveContact: Contact = {};
   error: Contact = {};
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private router: Router) {
     this.init();
   }
 
@@ -78,6 +72,7 @@ export class ContatoNovoPage {
 
     this.saveContact = {};
 
-    return;
+    this.router.navigate([`home`]);
+
   }
 }

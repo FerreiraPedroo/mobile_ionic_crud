@@ -2,14 +2,16 @@
   <ion-toolbar>
     <div slot="start" class="contact-buttons">
       <ion-button size="medium" color="light" href="home">
-        <ion-icon name="arrow-back-outline" ></ion-icon>
+        <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </div>
     <ion-title id="contac-title">Contato</ion-title>
     <div slot="end" class="contact-buttons">
-      <ion-button size="medium" color="light">
-        <ion-icon name="pencil-outline"></ion-icon>
-      </ion-button>
+      <div [hidden]="!isReadonly">
+        <ion-button size="medium" color="light" (click)="changeEdit()">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-button>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -50,8 +52,8 @@
 
     </ion-list>
 
-    <div id="contact-toolbar-box" *nfIF="isEdit">
-      <ion-button slot="start" color="dark" fill="clear" (click)="validateInput()" class="contact-button">
+    <div id="contact-toolbar-box" *ngIf="!isEdit">
+      <ion-button slot="start" color="dark" fill="clear" (click)="changeEdit()" class="contact-button">
         Cancelar
       </ion-button>
       <ion-button slot="end" color="dark" fill="clear" (click)="validateInput()" class="contact-button">
