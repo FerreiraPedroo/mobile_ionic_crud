@@ -25,11 +25,38 @@ interface Contact {
 export class ContatoNovoPage {
   private _storage: Storage | null = null;
   saveContact: Contact = {};
+  error: Contact = {};
 
-  constructor(private storage: Storage) {}
+  constructor(private storage: Storage) {
+    this.init();
+  }
 
+  async init() {
+    const storage = await this.storage.create();
+    this._storage = storage;
+  }
+
+  async validateInput() {
+    const error: Contact = {};
+    if (!this.saveContact.name) {
+      error.name = 'Digite um nome.';
+    }
+
+    if (!this.saveContact.email) {
+      error.email = 'Digite o email.';
+    }
+
+    if (!this.saveContact.phone) {
+      error.phone = 'Digite o telefone.';
+    }
+
+    this.error = error;
+    if (!error.name && !error.phone && !error.email) {
+      this.contactSave();
+    }
+  }
   async contactSave() {
-    const getStorage = (await this.storage.get('lista')) ?? '[]';
+    const getStorage = (await this._storage!.get('lista')) ?? '[]';
     let tempLista = [];
 
     tempLista = JSON.parse(getStorage);
