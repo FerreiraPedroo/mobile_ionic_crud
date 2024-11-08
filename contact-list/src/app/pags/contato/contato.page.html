@@ -12,6 +12,11 @@
           <ion-icon name="pencil-outline"></ion-icon>
         </ion-button>
       </div>
+      <div [hidden]="!isReadonly">
+        <ion-button id="present-alert" size="medium" color="light">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -60,5 +65,9 @@
         Salvar
       </ion-button>
     </div>
+
+    <ion-alert trigger="present-alert" header="Deseja realmente excluir o contato: {{contact.name}}" [buttons]="alertButtons"
+    ></ion-alert>
   </div>
 </ion-content>
+<!-- (didDismiss)="()=> null" -->

@@ -27,6 +27,21 @@ export class ContatoPage {
 
   error: Contact = {};
 
+  public alertButtons = [
+    {
+      text: 'CANCELAR',
+      role: 'cancel',
+      handler: () => null,
+    },
+    {
+      text: 'CONFIRMAR',
+      role: 'confirm',
+      handler: async () => {
+        await this.contactDelete();
+      },
+    },
+  ];
+
   constructor(private storage: Storage, private route: ActivatedRoute, private router: Router) {
     this.init();
   }
@@ -88,8 +103,25 @@ export class ContatoPage {
 
     await this._storage?.set('lista', listaStr);
 
-    this.contact = {...updateContact};
-    this.editContact = {...updateContact};
+    this.contact = { ...updateContact };
+    this.editContact = { ...updateContact };
+
+    this.router.navigate([`home`]);
+  }
+
+  async contactDelete() {
+    const getStorage = (await this._storage!.get('lista')) ?? '[]';
+    let tempLista = [];
+
+    tempLista = JSON.parse(getStorage);
+
+    const contactUpdateInfo = tempLista.filter((cont: Contact) => {
+      return cont.ID != this.contact.ID
+    });
+
+    const listaStr = JSON.stringify(contactUpdateInfo);
+
+    await this._storage?.set('lista', listaStr);
 
     this.router.navigate([`home`]);
   }
