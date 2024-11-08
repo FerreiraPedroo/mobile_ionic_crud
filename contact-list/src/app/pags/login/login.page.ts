@@ -29,11 +29,8 @@ export class LoginPage {
   }
 
   login() {
-    console.log({ f: this.auth, p: this.password, y: this.user })
     signInWithEmailAndPassword(this.auth, this.user, this.password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log({ userCredential })
         this.router.navigate([`home`]);
       })
       .catch((error) => {
