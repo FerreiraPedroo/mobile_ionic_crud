@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from "../../../models/user.model";
-import { LoadingController, NavController, ToastController } from '@ionic/angular';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { initializeApp } from 'firebase/app';
+import { Router } from '@angular/router';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 @Component({
   selector: 'app-registro',
@@ -11,57 +11,36 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class RegistroPage {
   user: string = "";
   password: string = "";
-  constructor(
-    private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController,
-    // private afAuth: AngularFireAuth,
-    private navCtrl: NavController
-  ) { }
+  auth: any = null;
 
-  async registro(user: string){
+  constructor(private router: Router) {
+    const app = initializeApp({
+      apiKey: "AIzaSyB4Y_roLAEbFJ7700s0bKNW0CM4mtJ9fMs",
+      authDomain: "listacontatos-1236b.firebaseapp.com",
+      projectId: "listacontatos-1236b",
+      storageBucket: "listacontatos-1236b.firebasestorage.app",
+      messagingSenderId: "947222999578",
+      appId: "1:947222999578:web:10610dd8d27068b274d7a3"
+    });
+    this.auth = getAuth(app);
+  }
+
+  async registro() {
     if (this.formValidation()) {
-      let loader = await this.loadingCtrl.create({
-        message: "Aguarde..."
-      })
-      await loader.present();
-
-      try {
-        // await this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then(data =>{
-        //   console.log(data);
-
-        //   this.navCtrl.navigateRoot("home")
-        // })
-        
-      } catch (error:any) {
-        error.message = "Error para se registrar";
-        let errorMessage = error.message || error.getLocalizedMessage();
-
-        this.showToast(errorMessage)
-      }
-
-      await loader.dismiss();
-
+      createUserWithEmailAndPassword(this.auth, this.user, this.password)
+        .then((userCredential) => {
+          this.router.navigateByUrl('login');
+        })
+        .catch((error) => {
+          console.log({ errorCode: error.code, errorMessage: error.message });
+        });
     }
   }
 
-  formValidation(){
-    if (!this.user) {
-      this.showToast("Insira um email");
+  formValidation() {
+    if (!this.user || !this.password) {
       return false;
     }
-    if (!this.password) {
-      this.showToast("Insira uma senha");
-      return false;
-    }
-
-    return false;
+    return true;
   }
-
-  showToast(message: string){
-    this.toastCtrl.create({
-      message: message,
-      duration: 4000
-    }).then(toastData => toastData.present());
-  }
-
 }

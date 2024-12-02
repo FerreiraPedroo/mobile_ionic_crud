@@ -1,5 +1,6 @@
 #contac-title {
   width: 100%;
+  padding-left: 80px;
   text-align: center;
 }
 #contact-photo {
@@ -45,6 +46,8 @@
 }
 
 .contact-buttons{
-  width: 80px;
+  display: flex;
+  gap: 12px;
+  // width: 140px;
   padding: 0 16px;
 }

@@ -27,6 +27,21 @@ export class ContatoPage {
 
   error: Contact = {};
 
+  public alertButtons = [
+    {
+      text: 'CANCELAR',
+      role: 'cancel',
+      handler: () => null,
+    },
+    {
+      text: 'CONFIRMAR',
+      role: 'confirm',
+      handler: async () => {
+        await this.contactDelete();
+      },
+    },
+  ];
+
   constructor(private storage: Storage, private route: ActivatedRoute, private router: Router) {
     this.init();
   }
@@ -48,17 +63,9 @@ export class ContatoPage {
 
   async validateInput() {
     const error: Contact = {};
-    if (!this.editContact.name) {
-      error.name = 'Digite um nome.';
-    }
-
-    if (!this.editContact.email) {
-      error.email = 'Digite o email.';
-    }
-
-    if (!this.editContact.phone) {
-      error.phone = 'Digite o telefone.';
-    }
+    !this.editContact.name ? error.name = 'Digite um nome.' : null;
+    !this.editContact.email ? error.email = 'Digite o email.' : null;
+    !this.editContact.phone ? error.phone = 'Digite o telefone.' : null;
 
     this.error = error;
     if (!error.name && !error.phone && !error.email) {
@@ -68,9 +75,7 @@ export class ContatoPage {
 
   async contactUpdate() {
     const getStorage = (await this._storage!.get('lista')) ?? '[]';
-    let tempLista = [];
-
-    tempLista = JSON.parse(getStorage);
+    let tempLista = JSON.parse(getStorage);
 
     const updateContact = {
       ...this.contact,
@@ -84,12 +89,23 @@ export class ContatoPage {
       return cont;
     });
 
-    const listaStr = JSON.stringify(contactUpdateInfo);
+    await this._storage?.set('lista', JSON.stringify(contactUpdateInfo));
 
-    await this._storage?.set('lista', listaStr);
+    this.contact = { ...updateContact };
+    this.editContact = { ...updateContact };
 
-    this.contact = {...updateContact};
-    this.editContact = {...updateContact};
+    this.router.navigate([`home`]);
+  }
+
+  async contactDelete() {
+    const getStorage = (await this._storage!.get('lista')) ?? '[]';
+    let tempLista = JSON.parse(getStorage);
+
+    const contactUpdateInfo = tempLista.filter((cont: Contact) => {
+      return cont.ID != this.contact.ID
+    });
+
+    await this._storage?.set('lista', JSON.stringify(contactUpdateInfo));
 
     this.router.navigate([`home`]);
   }

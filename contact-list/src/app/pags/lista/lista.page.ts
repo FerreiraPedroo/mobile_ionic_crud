@@ -28,42 +28,27 @@ export class ListaPage {
   }
 
   async init() {
-    const storage = await this.storage.create();
-    this._storage = storage;
-
+    this._storage = await this.storage.create();
     const startLista = await this._storage.get('lista');
-    const startListaJSON = JSON.parse(startLista);
-    this.lista = startListaJSON;
+    this.lista = JSON.parse(startLista);
   }
 
   async contactSave(modal: any) {
     const getStorage = (await this._storage?.get('lista')) ?? '[]';
-    let tempLista = [];
+    const tempLista = JSON.parse(getStorage);
+    const lastID = tempLista.at(-1);
 
-    tempLista = JSON.parse(getStorage);
-
-    const lastID = tempLista.length
-      ? tempLista[tempLista.length - 1].ID + 1
-      : 1;
-
-    const newContact = {
-      ID: lastID,
+    tempLista.push({
+      ID: lastID ? lastID.ID + 1 : 1,
       ...this.saveContact,
-    };
+    });
 
-    tempLista.push(newContact);
-
-    const listaStr = JSON.stringify(tempLista);
-
-    await this._storage?.set('lista', listaStr);
+    await this._storage?.set('lista', JSON.stringify(tempLista));
 
     this.saveContact = {};
-
     this.init();
-
     modal.dismiss();
 
-    return;
   }
 
   selectItem(ID: any) {
