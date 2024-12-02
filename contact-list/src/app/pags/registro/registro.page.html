@@ -5,28 +5,21 @@
 </ion-header>
 
 <ion-content>
-<div class="container">
-  <div class="login">
-    <h2>Faça seu cadastro</h2>
-    <div>
+  <div class="container">
+    <div class="login">
+      <h2>Faça seu cadastro</h2>
       <ion-item>
         <ion-icon size="large" name="person"></ion-icon>
         <ion-input type="email" [(ngModel)]="user" required label="Email" labelPlacement="floating"
           placeholder="Insira seu Email"></ion-input>
       </ion-item>
-    </div>
-
-    <div>
       <ion-item>
         <ion-icon size="large" name="lock-closed"></ion-icon>
         <ion-input type="password" [(ngModel)]="password" required label="Senha" labelPlacement="floating"
           placeholder="Insira sua senha"></ion-input>
       </ion-item>
+      <ion-button shape="round" class="ion-margin-top" (click)="registro()">Registre-se<ion-icon slot="end"
+          name="person-add"></ion-icon></ion-button>
     </div>
-
-    <ion-button shape="round" class="ion-margin-top" (click)="registro()">Registre-se<ion-icon slot="end"
-        name="person-add"></ion-icon></ion-button>
-
   </div>
-</div>
 </ion-content>

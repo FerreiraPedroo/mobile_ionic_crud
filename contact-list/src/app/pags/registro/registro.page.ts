@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { initializeApp } from 'firebase/app';
 import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -12,13 +11,9 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 export class RegistroPage {
   user: string = "";
   password: string = "";
-  userAuth: any = null;
   auth: any = null;
 
-  constructor(
-    private toastCtrl: ToastController,
-    private router: Router
-  ) {
+  constructor(private router: Router) {
     const app = initializeApp({
       apiKey: "AIzaSyB4Y_roLAEbFJ7700s0bKNW0CM4mtJ9fMs",
       authDomain: "listacontatos-1236b.firebaseapp.com",
@@ -34,34 +29,18 @@ export class RegistroPage {
     if (this.formValidation()) {
       createUserWithEmailAndPassword(this.auth, this.user, this.password)
         .then((userCredential) => {
-          this.userAuth = userCredential.user;
-          this.router.navigate([`login`]);
+          this.router.navigateByUrl('login');
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log({ errorCode, errorMessage })
+          console.log({ errorCode: error.code, errorMessage: error.message });
         });
     }
   }
 
   formValidation() {
-    if (!this.user) {
-      this.showToast("Insira um email");
-      return false;
-    }
-    if (!this.password) {
-      this.showToast("Insira uma senha");
+    if (!this.user || !this.password) {
       return false;
     }
     return true;
   }
-
-  showToast(message: string) {
-    this.toastCtrl.create({
-      message: message,
-      duration: 4000
-    }).then(toastData => toastData.present());
-  }
-
 }

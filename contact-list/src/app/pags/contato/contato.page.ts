@@ -63,17 +63,9 @@ export class ContatoPage {
 
   async validateInput() {
     const error: Contact = {};
-    if (!this.editContact.name) {
-      error.name = 'Digite um nome.';
-    }
-
-    if (!this.editContact.email) {
-      error.email = 'Digite o email.';
-    }
-
-    if (!this.editContact.phone) {
-      error.phone = 'Digite o telefone.';
-    }
+    !this.editContact.name ? error.name = 'Digite um nome.' : null;
+    !this.editContact.email ? error.email = 'Digite o email.' : null;
+    !this.editContact.phone ? error.phone = 'Digite o telefone.' : null;
 
     this.error = error;
     if (!error.name && !error.phone && !error.email) {
@@ -83,9 +75,7 @@ export class ContatoPage {
 
   async contactUpdate() {
     const getStorage = (await this._storage!.get('lista')) ?? '[]';
-    let tempLista = [];
-
-    tempLista = JSON.parse(getStorage);
+    let tempLista = JSON.parse(getStorage);
 
     const updateContact = {
       ...this.contact,
@@ -99,9 +89,7 @@ export class ContatoPage {
       return cont;
     });
 
-    const listaStr = JSON.stringify(contactUpdateInfo);
-
-    await this._storage?.set('lista', listaStr);
+    await this._storage?.set('lista', JSON.stringify(contactUpdateInfo));
 
     this.contact = { ...updateContact };
     this.editContact = { ...updateContact };
@@ -111,17 +99,13 @@ export class ContatoPage {
 
   async contactDelete() {
     const getStorage = (await this._storage!.get('lista')) ?? '[]';
-    let tempLista = [];
-
-    tempLista = JSON.parse(getStorage);
+    let tempLista = JSON.parse(getStorage);
 
     const contactUpdateInfo = tempLista.filter((cont: Contact) => {
       return cont.ID != this.contact.ID
     });
 
-    const listaStr = JSON.stringify(contactUpdateInfo);
-
-    await this._storage?.set('lista', listaStr);
+    await this._storage?.set('lista', JSON.stringify(contactUpdateInfo));
 
     this.router.navigate([`home`]);
   }

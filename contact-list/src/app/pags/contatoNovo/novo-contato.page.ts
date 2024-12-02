@@ -26,53 +26,34 @@ export class ContatoNovoPage {
   }
 
   async init() {
-    const storage = await this.storage.create();
-    this._storage = storage;
+    this._storage = await this.storage.create();
   }
 
   async validateInput() {
     const error: Contact = {};
-    if (!this.saveContact.name) {
-      error.name = 'Digite um nome.';
-    }
-
-    if (!this.saveContact.email) {
-      error.email = 'Digite o email.';
-    }
-
-    if (!this.saveContact.phone) {
-      error.phone = 'Digite o telefone.';
-    }
+    !this.saveContact.name ? (error.name = 'Digite um nome.') : null;
+    !this.saveContact.email ? (error.email = 'Digite o email.') : null;
+    !this.saveContact.phone ? (error.phone = 'Digite o telefone.') : null;
 
     this.error = error;
-    if (!error.name && !error.phone && !error.email) {
+    if (!Object.entries(error).length) {
       this.contactSave();
     }
   }
+
   async contactSave() {
     const getStorage = (await this._storage!.get('lista')) ?? '[]';
-    let tempLista = [];
+    const tempLista = JSON.parse(getStorage);
+    const lastID = tempLista.at(-1);
 
-    tempLista = JSON.parse(getStorage);
-
-    const lastID = tempLista.length
-      ? tempLista[tempLista.length - 1].ID + 1
-      : 1;
-
-    const newContact = {
-      ID: lastID,
+    tempLista.push({
+      ID: lastID ? lastID.ID + 1 : 1,
       ...this.saveContact,
-    };
+    });
 
-    tempLista.push(newContact);
-
-    const listaStr = JSON.stringify(tempLista);
-
-    await this._storage?.set('lista', listaStr);
+    await this._storage?.set('lista', JSON.stringify(tempLista));
 
     this.saveContact = {};
-
     this.router.navigate([`home`]);
-
   }
 }
